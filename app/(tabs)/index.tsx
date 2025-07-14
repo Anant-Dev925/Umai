@@ -9,8 +9,11 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Button,
 } from "react-native";
+import * as Sentry from "@sentry/react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import useAuthStore from "@/store/auth.store";
 
 export default function Index() {
   return (
