@@ -34,6 +34,14 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
+      ],
+      [
+        "@sentry/react-native/expo",
+        {
+          "url": "https://sentry.io/",
+          "project": "umai",
+          "organization": "none-i2d"
+        }
       ]
     ],
     "experiments": {

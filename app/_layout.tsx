@@ -3,6 +3,19 @@ import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 import "./globals.css";
 import useAuthStore from "@/store/auth.store";
+import * as Sentry from '@sentry/react-native';
+
+Sentry.init({
+  dsn: 'https://e71492a7f657dd1d24f8ebc1e665c422@o4509653885714432.ingest.us.sentry.io/4509653903540224',
+
+  // Adds more context data to events (IP address, cookies, user, etc.)
+  // For more information, visit: https://docs.sentry.io/platforms/react-native/data-management/data-collected/
+  sendDefaultPii: true,
+  integrations: [Sentry.feedbackIntegration()],
+
+  // uncomment the line below to enable Spotlight (https://spotlightjs.com)
+  // spotlight: __DEV__,
+});
 
 export default (function RootLayout() {
   const { isLoading, fetchAuthenticatedUser } = useAuthStore();
