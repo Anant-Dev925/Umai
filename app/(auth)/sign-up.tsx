@@ -4,6 +4,7 @@ import { createUser } from "@/lib/appwrite";
 import { Link, router } from "expo-router";
 import React, { useState } from "react";
 import { Alert, Text, View } from "react-native";
+import useAuthStore from "@/store/auth.store";
 
 const SignUp = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -12,9 +13,10 @@ const SignUp = () => {
   const submit = async () => {
     const { name, email, password } = form;
 
-    if (!name || !email || !password) return;
-    Alert.alert("Error", "Please enter valid Email and Password");
-
+    if (!name || !email || !password) {
+      Alert.alert("Error", "Please enter valid Email and Password");
+      return;
+    }
     setIsSubmitting(true); //validation
 
     try {
@@ -23,7 +25,8 @@ const SignUp = () => {
         password,
         name,
       });
-
+      await useAuthStore.getState().fetchAuthenticatedUser();
+      Alert.alert(`Welcome! ${name}`, "Glad to have you here");
       router.replace("/");
     } catch (error: any) {
       Alert.alert("Error", error.message);

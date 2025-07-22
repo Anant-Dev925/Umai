@@ -1,13 +1,13 @@
-import { FlatList, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import useAppwrite from "@/lib/useAppwrite";
+import CartButton from "@/components/CartButton";
+import MenuCard from "@/components/MenuCard";
 import { getCategories, getMenu } from "@/lib/appwrite";
+import useAppwrite from "@/lib/useAppwrite";
+import { Category, MenuItem } from "@/type";
+import cn from "clsx";
 import { useLocalSearchParams } from "expo-router";
 import { useEffect } from "react";
-import CartButton from "@/components/CartButton";
-import cn from "clsx";
-import MenuCard from "@/components/MenuCard";
-import { MenuItem } from "@/type";
+import { FlatList, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 import Filter from "@/components/Filter";
 import SearchBar from "@/components/SearchBar";
@@ -69,7 +69,7 @@ const Search = () => {
 
             <SearchBar />
 
-            <Filter categories={categories!} />
+            <Filter categories={categories as Category[]} />
           </View>
         )}
         ListEmptyComponent={() => !loading && <Text>No results</Text>}

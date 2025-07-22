@@ -1,6 +1,7 @@
 import CartButton from "@/components/CartButton";
 import { images, offers } from "@/constants";
 import cn from "clsx";
+import { router } from "expo-router";
 import { Fragment } from "react";
 import {
   FlatList,
@@ -9,11 +10,8 @@ import {
   Text,
   TouchableOpacity,
   View,
-  Button,
 } from "react-native";
-import * as Sentry from "@sentry/react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import useAuthStore from "@/store/auth.store";
 
 export default function Index() {
   return (
@@ -32,6 +30,7 @@ export default function Index() {
                 )}
                 style={{ backgroundColor: item.color }}
                 android_ripple={{ color: "#fffff22" }}
+                onPress={() => router.push("/(tabs)/search")}
               >
                 {({ pressed }) => (
                   <Fragment>

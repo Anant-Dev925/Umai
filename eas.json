@@ -1,0 +1,26 @@
+{
+  "cli": {
+    "version": ">= 16.17.0",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "preview": {
+      "distribution": "internal"
+    },
+    "production": {
+      "autoIncrement": true,
+      "env": {
+        "SENTRY AUTH TOKEN": "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",
+        "SENTRY ORG": "none-i2d",
+        "SENTRY PROJECT": "umai"
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}

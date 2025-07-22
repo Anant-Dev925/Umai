@@ -5,6 +5,7 @@ import { Link, router } from "expo-router";
 import React, { useState } from "react";
 import { Alert, Text, View } from "react-native";
 import * as Sentry from "@sentry/react-native";
+import useAuthStore from "@/store/auth.store";
 
 const SignIn = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -13,13 +14,15 @@ const SignIn = () => {
   const submit = async () => {
     const { email, password } = form;
 
-    if (!email || !password) return;
-    Alert.alert("Error", "Please enter valid Email and Password");
-
+    if (!email || !password) {
+      Alert.alert("Error", "Please enter valid Email and Password");
+      return;
+    }
     setIsSubmitting(true); //validation
 
     try {
       await signIn({ email, password });
+      await useAuthStore.getState().fetchAuthenticatedUser();
       Alert.alert("success", "User signed-in successfully");
       router.replace("/");
     } catch (error: any) {
